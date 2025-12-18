@@ -1,0 +1,137 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  // url      = env("DATABASE_URL")
+}
+
+// ================= ENUMS ================= 
+
+enum RequestStatus {
+  pending
+  accepted
+  rejected
+}
+
+enum Role {
+  buyer
+  seller
+  admin
+}
+
+enum BikeStatus {
+  available
+  sold
+  inactive
+}
+
+enum BikeCondition {
+  Excellent
+  Good
+  Average
+}
+
+enum VehicleType {
+  BIKE
+  SCOOTY
+}
+
+// ================= MODELS =================
+
+// -------- Users --------
+model User {
+  userId   Int    @id @default(autoincrement())
+  name     String
+  email    String @unique
+  password String
+  role     Role   @default(buyer)
+
+  agency         Agency? // If user is a seller
+
+  buyerRequests  RequestQuery[] @relation("BuyerRequests")
+  sellerRequests RequestQuery[] @relation("SellerRequests")
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+}
+
+// -------- Seller / Agency --------
+model Agency {
+  agencyId Int @id @default(autoincrement())
+  userId   Int @unique
+
+  shopName  String?
+  ownerName String
+  phone     String
+  address   String
+  city      String
+  state     String
+  pincode   String
+
+  user     User      @relation(fields: [userId], references: [userId])
+  vehicles Vehicle[]
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+}
+
+// -------- Vehicles --------
+model Vehicle {
+  vehicleId Int @id @default(autoincrement())
+  agencyId  Int
+
+  brand       String
+  model       String
+  year        Int
+  price       Float
+  kmDriven    Int
+  condition   BikeCondition
+  status      BikeStatus    @default(available)
+  vehicleType VehicleType
+  description String?
+
+  agency   Agency         @relation(fields: [agencyId], references: [agencyId])
+  images   VehicleImage[] //seller have own
+  requests RequestQuery[] @relation("VehicleRequests")   // // give a name
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+}
+
+// -------- Vehicle Images --------
+model VehicleImage {
+  vehicleImageId Int    @id @default(autoincrement())
+  vehicleId      Int
+  imageUrl       String
+
+  vehicle Vehicle @relation(fields: [vehicleId], references: [vehicleId])
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+}
+
+// -------- Request Queries --------
+model RequestQuery {
+  requestId Int @id @default(autoincrement())
+
+  vehicleId Int
+  buyerId   Int
+  sellerId  Int
+
+  message String?
+  status  RequestStatus @default(pending)
+
+  vehicle Vehicle @relation("VehicleRequests", fields: [vehicleId], references: [vehicleId])
+  buyer   User    @relation("BuyerRequests", fields: [buyerId], references: [userId])
+  seller  User    @relation("SellerRequests", fields: [sellerId], references: [userId])
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+}

@@ -3,7 +3,6 @@ import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import swaggerUi from "swagger-ui-express";
 import swaggerSpec from "./swagger.js";
-
 import prisma from "./config/db.js";
 
 dotenv.config();

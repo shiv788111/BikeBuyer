@@ -48,7 +48,7 @@ model User {
   password String
   role     Role   @default(buyer)
 
-  agency         Agency? // If user is a seller
+  agency     Agency?  //If a user is a seller, they can create one agency.If a user is a buyer, they do not have any agency.
 
   buyerRequests  RequestQuery[] @relation("BuyerRequests")
   sellerRequests RequestQuery[] @relation("SellerRequests")
@@ -72,7 +72,7 @@ model Agency {
   pincode   String
 
   user     User      @relation(fields: [userId], references: [userId])
-  vehicles Vehicle[]// mean vehical multiple ho skte h isliye array use kiya h 
+  vehicles Vehicle[]// “Multiple vehicles can exist, that’s why an array is used.”
 
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
@@ -95,8 +95,9 @@ model Vehicle {
   description String?
 
   agency   Agency         @relation(fields: [agencyId], references: [agencyId])
-  images   VehicleImage[] //multiple image ho skti h
-  requests RequestQuery[] @relation("VehicleRequests")   // // give a name
+  images   VehicleImage[] //“Multiple images can exist, so an array is used.”
+  requests RequestQuery[] @relation("VehicleRequests")  
+   //“One vehicle can have multiple  request” and No foreign key exists here, for request so `fields` and `references` are NOT required.
 
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt

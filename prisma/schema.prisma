@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  // url      = env("DATABASE_URL")
 }
 
 // ================= ENUMS ================= 
@@ -21,13 +21,13 @@ enum Role {
   admin
 }
 
-enum BikeStatus {
+enum VehicleStatus {
   available
   sold
   inactive
 }
 
-enum BikeCondition {
+enum VehicleCondition {
   Excellent
   Good
   Average
@@ -89,8 +89,8 @@ model Vehicle {
   year        Int
   price       Float
   kmDriven    Int
-  condition   BikeCondition
-  status      BikeStatus    @default(available)
+  condition   VehicleCondition
+  status      VehicleStatus    @default(available)
   vehicleType VehicleType
   description String?
 

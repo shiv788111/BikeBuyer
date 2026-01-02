@@ -1,5 +1,5 @@
 import express from "express";
-import { register, login ,getProfile,logout} from "../controllers/userController.js";
+// import { register, login ,getProfile,logout} from "../controllers/userController.js";
 
 const router = express.Router();
 
@@ -39,7 +39,7 @@ const router = express.Router();
  *       400:
  *         description: User already exists
  */
-router.post("/register", register);
+// router.post("/register", register);
 
 /**
  * @swagger
@@ -69,7 +69,7 @@ router.post("/register", register);
  *       401:
  *         description: Invalid credentials
  */
-router.post("/login", login);
+// router.post("/login", login);
 
 
 
@@ -104,7 +104,7 @@ router.post("/login", login);
  *       401:
  *         description: Unauthorized
  */
-router.get("/profile", getProfile);
+// router.get("/profile", getProfile);
 
 
 
@@ -133,7 +133,7 @@ router.get("/profile", getProfile);
  *       401:
  *         description: Unauthorized
  */
-router.post("/logout", logout);
+// router.post("/logout", logout);
 
 
 

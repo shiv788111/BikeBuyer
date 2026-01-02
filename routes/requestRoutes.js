@@ -1,11 +1,5 @@
 import express from "express";
-import {
-  
-  getRequestsByBuyer,
-  getRequestsBySeller,
-  deleteRequest,
-  createRequest
-} from "../controllers/requestController.js";
+
 
 const router = express.Router();
 
@@ -46,7 +40,7 @@ const router = express.Router();
  *       201:
  *         description: Request created successfully
  */
-router.post("/", createRequest);
+// router.post("/", createRequest);
 
 /**
  * @swagger
@@ -65,7 +59,7 @@ router.post("/", createRequest);
  *       200:
  *         description: Requests fetched successfully
  */
-router.get("/buyer/:buyerId", getRequestsByBuyer);
+// router.get("/buyer/:buyerId", getRequestsByBuyer);
 
 /**
  * @swagger
@@ -84,7 +78,7 @@ router.get("/buyer/:buyerId", getRequestsByBuyer);
  *       200:
  *         description: Requests fetched successfully
  */
-router.get("/seller/:sellerId", getRequestsBySeller);
+// router.get("/seller/:sellerId", getRequestsBySeller);
 
 /**
  * @swagger
@@ -105,6 +99,6 @@ router.get("/seller/:sellerId", getRequestsBySeller);
  *       200:
  *         description: Request deleted successfully
  */
-router.delete("/:id", deleteRequest);
+// router.delete("/:id", deleteRequest);
 
 export default router;

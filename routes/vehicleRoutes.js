@@ -1,10 +1,10 @@
 import express from "express";
-import {
-  upsertVehicle,
-  deleteVehicle,
-  getAllVehicles,
-  getVehicleById
-} from "../controllers/vehicleController.js";
+// import {
+//   upsertVehicle,
+//   deleteVehicle,
+//   getAllVehicles,
+//   getVehicleById
+// } from "../controllers/vehicleController.js";
 
 const router = express.Router();
 
@@ -42,7 +42,7 @@ const router = express.Router();
  *       200:
  *         description: Vehicle insert/update successful
  */
-router.post("/bikes/upsert", upsertVehicle);
+// router.post("/bikes/upsert", upsertVehicle);
 
 /**
  * @swagger
@@ -63,7 +63,7 @@ router.post("/bikes/upsert", upsertVehicle);
  *       200:
  *         description: Vehicle deleted successfully
  */
-router.delete("/bikes/delete/:id", deleteVehicle);
+// router.delete("/bikes/delete/:id", deleteVehicle);
 
 /**
  * @swagger
@@ -75,7 +75,7 @@ router.delete("/bikes/delete/:id", deleteVehicle);
  *       200:
  *         description: Vehicles fetched successfully
  */
-router.get("/bikes/get-all", getAllVehicles);
+// router.get("/bikes/get-all", getAllVehicles);
 
 /**
  * @swagger
@@ -94,7 +94,7 @@ router.get("/bikes/get-all", getAllVehicles);
  *       200:
  *         description: Vehicle fetched successfully
  */
-router.get("/bikes/get/:id", getVehicleById);
+// router.get("/bikes/get/:id", getVehicleById);
 
 
 
@@ -113,7 +113,7 @@ router.get("/bikes/get/:id", getVehicleById);
  *       200:
  *         description: All vehicles list fetched
  */
-router.get("/get-all", getAllVehicles);
+// router.get("/get-all", getAllVehicles);
 
 /**
  * @swagger
@@ -132,6 +132,6 @@ router.get("/get-all", getAllVehicles);
  *       200:
  *         description: Single vehicle fetched successfully
  */
-router.get("/get/:id", getVehicleById);
+// router.get("/get/:id", getVehicleById);
 
 export default router;

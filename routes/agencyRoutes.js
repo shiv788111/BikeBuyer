@@ -1,6 +1,4 @@
 import { Router } from "express";
-import { upsertAgency ,getAgencyById,getAgencyByUser,deleteAgency} from "../controllers/agencyController.js";
-
 const router=Router();
 
 
@@ -31,7 +29,7 @@ const router=Router();
  *                 example: Bikes
  *               ownerName:
  *                 type: string
- *                 example: Shiv Kumar
+ *                 example: all is well
  *               phone:
  *                 type: string
  *                 example: 9876543210
@@ -53,7 +51,7 @@ const router=Router();
  *       400:
  *         description: Validation error
  */
-router.post("/upsert/:id", upsertAgency);
+// router.post("/upsert/:id", upsertAgency);
 
 /**
  * @swagger
@@ -74,7 +72,7 @@ router.post("/upsert/:id", upsertAgency);
  *       404:
  *         description: Agency not found
  */
-router.get("/:id", getAgencyById);
+// router.get("/:id", getAgencyById);
 
 /**
  * @swagger
@@ -95,7 +93,7 @@ router.get("/:id", getAgencyById);
  *       404:
  *         description: Agency not found
  */
-router.get("/user/:userId", getAgencyByUser);
+// router.get("/user/:userId", getAgencyByUser);
 
 
 
@@ -120,7 +118,7 @@ router.get("/user/:userId", getAgencyByUser);
  *       404:
  *         description: Agency not found
  */
-router.delete("/:id", deleteAgency);
+// router.delete("/:id", deleteAgency);
 
 
 

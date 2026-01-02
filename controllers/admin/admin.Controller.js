@@ -1,11 +1,9 @@
 // only  request response here..
 
 
-export async function student(req,req) {
-    
-    try {
-        
-    } catch (error) {
-        
-    }
-}
+//  ADMIN KYA KARTA HAI?
+
+// ✅ Seller verify
+// ✅ Fake listings delete
+// ✅ Enquiries dekhna
+// ✅ Reports / control

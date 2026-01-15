@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  // url      = env("DATABASE_URL")
+   url      = env("DATABASE_URL")
 }
 
 // ================= ENUMS ================= 
@@ -62,7 +62,6 @@ model User {
 model Agency {
   agencyId Int @id @default(autoincrement())
   userId   Int @unique
-
   shopName  String?
   ownerName String
   phone     String
@@ -70,6 +69,9 @@ model Agency {
   city      String
   state     String
   pincode   String
+
+  profileImg String  
+  aadharCard String  // aadhaar card image or number
 
   user     User      @relation(fields: [userId], references: [userId])
   vehicles Vehicle[]// “Multiple vehicles can exist, that’s why an array is used.”
@@ -132,9 +134,10 @@ model RequestQuery {
   buyer   User    @relation("BuyerRequests", fields: [buyerId], references: [userId])
   seller  User    @relation("SellerRequests", fields: [sellerId], references: [userId])
 
-  /*---It is necessary to name them BuyerRequest and SellerRequest
-  because two users are being referenced from the same table;
-  otherwise Prisma will throw an error.---*/
+// It is necessary to name them BuyerRequest and SellerRequest
+// because two users are being referenced from the same table;
+// otherwise Prisma will throw an error.
+
 
 
   createdAt DateTime  @default(now())

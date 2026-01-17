@@ -17,7 +17,7 @@ export const createAgency = async (req, res) => {
     if (!ownerName || !phone || !address || !city || !state || !pincode) {
       return res.status(400).json({
         success: false,
-        message: "All required fields must be provided",
+        message: "All fields required ",
       });
     }
 
